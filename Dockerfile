@@ -15,6 +15,7 @@ RUN npm run build
 
 #Run phase
 FROM nginx as runner
+EXPOSE 80
 COPY --from=builder  /usr/app/fe/build /usr/share/nginx/html
 #default command is starting nginx. so no need to give a command
 
