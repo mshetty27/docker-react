@@ -1,0 +1,15 @@
+# Use alpine as base image. alpine is a term which says as small as possible
+FROM node:alpine
+
+#Copy current working directory to container (when built). First set working directory
+WORKDIR /usr/app/fe
+
+COPY ./package.json ./
+# Install dependencies
+RUN npm install
+
+# When make changes dependencies will not be installed again (will use previous image from cache)
+COPY ./ ./
+
+# Provide startup command npm start
+CMD ["npm", "start"]
